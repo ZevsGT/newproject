@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 10 2018 г., 16:15
+-- Время создания: Июл 10 2018 г., 16:23
 -- Версия сервера: 5.6.38
 -- Версия PHP: 7.0.26
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `answers` (
   `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `flag` int(11) UNSIGNED DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `flag` int(11) UNSIGNED NOT NULL,
   `questions_id` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -41,7 +41,10 @@ CREATE TABLE `answers` (
 
 INSERT INTO `answers` (`id`, `name`, `flag`, `questions_id`) VALUES
 (32, 'верный', 1, 32),
-(33, 'не верный', 0, 32);
+(33, 'не верный', 0, 32),
+(34, 'верный', 1, 33),
+(35, 'не верный', 0, 33),
+(36, 'не верный', 0, 33);
 
 -- --------------------------------------------------------
 
@@ -51,7 +54,7 @@ INSERT INTO `answers` (`id`, `name`, `flag`, `questions_id`) VALUES
 
 CREATE TABLE `questions` (
   `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `testtitle_id` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -60,7 +63,8 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `name`, `testtitle_id`) VALUES
-(32, 'вопрос', 31);
+(32, 'вопрос', 31),
+(33, 'вопрос 2', 32);
 
 -- --------------------------------------------------------
 
@@ -70,7 +74,7 @@ INSERT INTO `questions` (`id`, `name`, `testtitle_id`) VALUES
 
 CREATE TABLE `testtitle` (
   `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `num_quest` int(11) UNSIGNED DEFAULT NULL,
   `passing_score` int(11) UNSIGNED DEFAULT NULL,
   `users_id` int(11) UNSIGNED DEFAULT NULL
@@ -81,7 +85,8 @@ CREATE TABLE `testtitle` (
 --
 
 INSERT INTO `testtitle` (`id`, `name`, `num_quest`, `passing_score`, `users_id`) VALUES
-(31, 'новый', 10, 80, 1);
+(31, 'новый', 10, 80, 1),
+(32, 'тест н2', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -91,10 +96,10 @@ INSERT INTO `testtitle` (`id`, `name`, `num_quest`, `passing_score`, `users_id`)
 
 CREATE TABLE `users` (
   `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `group` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `login` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `login` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -143,19 +148,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT для таблицы `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT для таблицы `testtitle`
 --
 ALTER TABLE `testtitle`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
