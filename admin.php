@@ -1,6 +1,4 @@
 <?php
-require_once "engine/data/session.php";
-require_once "engine/data/db.php"; // подключение бд + конфиг 
 require_once 'engine/lib/Twig/Autoloader.php';
 require_once 'engine/class.php';
 Twig_Autoloader::register();
@@ -34,30 +32,60 @@ if (isset ($_POST['submitFF'])) {
 
 
 if( isset($_SESSION['logged_user'])){ //если авторизован и группа admin
-
+$test = new interview('testtitle', 'questions', 'answers' ,'users');
 	unset($_POST);
  	if($_GET['mod']=='addtest'){
 
- 		if(isset($_SESSION['Title_Test'])){//если название теста было заполнено, выводим форму с вопросами
+	 		if(isset($_SESSION['Title_Test'])){//если название теста было заполнено, выводим форму с вопросами
+	 			$rend = $test->renderEditor(array('Iclass' => 'w100 border', 'action' => '/engine/modules/addQustion.php'));
+	 			$template = $admin->loadTemplate('addQustions.tpl');
+				echo $template->render(array('rend' => $rend));
+	 		}else{// форма с названием теста
+				$template = $admin->loadTemplate('addTitleTest.tpl');
+				echo $template->render(array('error' => $_SESSION['error']));
+				unset($_SESSION['error']);
+	 		}
 
- 			$template = $admin->loadTemplate('addQustions.tpl');
-			echo $template->render(array());
-			//unset($_SESSION['Title_Test']);
+ 	}elseif($_GET[mod] == 'editinterview' && isset($_GET[id])){ // страница с редактирвания опроса
 
- 		}else{// форма с названием теста
+ 		$_SESSION['Title_Test'][id] = $_GET[id]; // используеться для возврата на страницу с вопросами 
+ 		$test->addinterview($_GET[id]);
+ 		$interview = $test->getInterview();
+ 		$questions = $test->getQuestionsList();
+ 
+ 		$template = $admin->loadTemplate('editInterview.tpl');
+		echo $template->render(array('name' => $interview, 'quests' => $questions));
 
-			$template = $admin->loadTemplate('addTitleTest.tpl');
-			echo $template->render(array('error' => $_SESSION['error']));
-			unset($_SESSION['error']);
+ 	}elseif($_GET[mod] == 'editquestions' && isset($_GET[id])){ // редактирование существующегов вопроса
 
- 		}
+ 				$test->addQust($_GET[id]);
+ 				$rend = $test->renderEditor(array(
+	 																					'Iclass' => 'w100 border', 
+	 																					'action' => '/engine/modules/editQustion.php',
+	 																					'submit' => array(
+										  																				array(
+										  																								'value' => 'Готово',
+										  																								'name' => 'further',
+										  																								'class' => ''
+										  																							)
+										  																				)
+ 																					));
+	 			$template = $admin->loadTemplate('addQustions.tpl');
+				echo $template->render(array('rend' => $rend));
 
- 	}else{//главная страница со списком тестов
+ 	}elseif($_GET[mod] == 'editInterviewName' && isset($_GET[id])){ // страница с редактирвания опроса
+
+ 		$test->addinterview($_GET[id]);
+ 		$interview = $test->getInterview();
+ 		
+ 		$template = $admin->loadTemplate('editTitleTest.tpl');
+		echo $template->render(array('interv' => $interview));
+
+ 	}else{//главная страница со списком опросов
  		unset($_SESSION['Title_Test']);
  		$tests = R::findAll('testtitle');
 		$template = $admin->loadTemplate('Ageneral.tpl');
 		echo $template->render(array('tests' => $tests));
-
  	}
 
 }else{ //форма авторизации
@@ -66,5 +94,4 @@ if( isset($_SESSION['logged_user'])){ //если авторизован и гр�
 	echo $template->render(array('error' => $error, 'login' => $_POST[login]));
 
 }
-
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 10 2018 г., 16:23
+-- Время создания: Июл 11 2018 г., 18:47
 -- Версия сервера: 5.6.38
 -- Версия PHP: 7.0.26
 
@@ -40,11 +40,14 @@ CREATE TABLE `answers` (
 --
 
 INSERT INTO `answers` (`id`, `name`, `flag`, `questions_id`) VALUES
-(32, 'верный', 1, 32),
-(33, 'не верный', 0, 32),
-(34, 'верный', 1, 33),
-(35, 'не верный', 0, 33),
-(36, 'не верный', 0, 33);
+(135, 'true', 1, 60),
+(136, 'false', 0, 60),
+(137, 'false', 0, 60),
+(138, 'верный', 1, 61),
+(139, 'не верны', 0, 61),
+(140, 'нет', 0, 61),
+(141, 'нет', 0, 61),
+(142, 'false', 0, 60);
 
 -- --------------------------------------------------------
 
@@ -63,8 +66,8 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `name`, `testtitle_id`) VALUES
-(32, 'вопрос', 31),
-(33, 'вопрос 2', 32);
+(60, 'вопрос обновление', 45),
+(61, 'название 2', 45);
 
 -- --------------------------------------------------------
 
@@ -85,8 +88,7 @@ CREATE TABLE `testtitle` (
 --
 
 INSERT INTO `testtitle` (`id`, `name`, `num_quest`, `passing_score`, `users_id`) VALUES
-(31, 'новый', 10, 80, 1),
-(32, 'тест н2', NULL, NULL, 1);
+(45, 'название1', 2, 50, 1);
 
 -- --------------------------------------------------------
 
@@ -148,19 +150,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT для таблицы `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT для таблицы `testtitle`
 --
 ALTER TABLE `testtitle`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
