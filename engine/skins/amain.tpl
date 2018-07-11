@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="templates/style/font-awesome.min.css">
     
     <title>Админ панель</title>
-    <script src="engine/ckeditor5/ckeditor.js"></script>
-    <script src="engine/ckeditor5/translations/ru.js"></script>
   </head>
   <body>
     {% include 'navbar.tpl' %}

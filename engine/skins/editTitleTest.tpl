@@ -6,7 +6,7 @@
       {{ error }}
       <div class="row justify-content-sm-around">
         <div class="col-sm-8">
-        	<form action="engine/modules/addTitleTest.php" method="post" enctype="multipart/form-data">
+        	<form action="engine/modules/editTitleTest.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="{{ interv.id }}">
                 <input type="text" name="name" id="name" required placeholder="Название теста" class="w100 border" value="{{ interv.name }}">
     

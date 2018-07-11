@@ -17,6 +17,6 @@
                     <a href="/admin.php?mod=addtest" class="nav-link">Добавить Тест</a>
                 </li>
             </ul>
-            <a href="engine/modules/logout.php">Выйти</a>
+            <a href="/engine/modules/logout.php">Выйти</a>
         </div>  
     </nav>

@@ -1,24 +1,16 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/engine/class.php';
 
+$addQ = new interview('testtitle', 'questions', 'answers' ,'users');
+
 if(isset($_POST[further])){
-	
-	$addQ = new interview('testtitle', 'questions', 'answers' ,'users');
-
-	foreach ($_POST as $key) {
-		if($key != $_POST[name] && $key != $_POST[further] && $key !='') {
-
-			if($key == $_POST['true']) $addQ->addQustionList($key, 1); //верный ответ
-			else $addQ->addQustionList($key, 0); //не верный ответ
-		}
-	}
-
-	$list = $addQ->getQuestionsList();
-	$addQ->addQustion($_SESSION['Title_Test']['id'], $_POST['name'], $list);
-
+	$addQ->eFormHandler($_POST,'add', $_SESSION['Title_Test']['id']);
 	header('location: /admin.php?mod=addtest');
-	
+	exit;
 }elseif($_POST[close]) {
-	echo "12";
+	$addQ->eFormHandler($_POST,'add', $_SESSION['Title_Test']['id']);
+	include $_SERVER['DOCUMENT_ROOT'].'/engine/skins/options.tpl';
 }
 ?>
+
+
