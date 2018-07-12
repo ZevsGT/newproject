@@ -2,9 +2,10 @@
 
 class questions extends interview{
 
-	private $questions_list;
-	private $question;
-	private $answers ;
+	protected $questions_list;
+	protected $question;
+	protected $answers ;
+	protected $questions_rand_key;
 
 	function loadQuests($interviewID){ // загружаем все вопросы из опроса
 		$db = new database('testtitle', 'questions', 'answers' ,'users');
@@ -44,8 +45,53 @@ class questions extends interview{
 		return $this->questions_list;
 	}
 
+	function getQuest(){//возврашает массив с данными вопроса и списком ответов
+		return $this->question;
+	}
+
+
+# Оброботка опроса пользователя при прохождении опроса
+
+	function data_preparation(){//формирует стартовые данные
+
+		if($this->questions_list != null && $this->interview != null){
+			$key = array_rand($this->questions_list, $this->interview[num_quest]);
+			$data['interview_id'] =  $this->interview[id];
+			$data['questions_rand_key'] =  $key;
+			$data['user_num'] = 0;
+			$data['user_question'] = null;
+			return $data;
+		}else return 'error: Survey data not uploaded';
+
+	}
+
+	function data_load($data){// загружает данные вопроса которые были свормированы в функции data_preparation() или get_data()
+		
+		$question = $this->questions_list[$data['questions_rand_key'][$data['user_num']]];
+		shuffle($question[answers]);
+		$this->question = $question;
+		
+		$this->user_num = $data['user_num'];
+		$this->questions_rand_key = $data['questions_rand_key'];
+		$this->user_question = $data['user_question'];
+	}
+
+	function get_data(){
+		$data['interview_id'] =  $this->interview[id];
+		$data['questions_rand_key'] =  $this->questions_rand_key;
+		$data['user_num'] = $this->user_num;
+		$data['user_question'] = $this->user_question;
+		
+		return $data;
+	}
+
+	function data_processing($answer){// обработка данных из формы ответа на вопрос
+		$this->user_question[] = array('id' => $answer[id], 'quest_id' => $answer[quest_id]);
+		$this->user_num++;
+	}
+# end Оброботка опроса пользователя при прохождении опроса
 	
-	function renderEditor($options){
+	function renderEditor($options = null){
 		
 		$option = array(
 										'action' => '', 
@@ -196,6 +242,49 @@ class questions extends interview{
 			if($this->answers != null) $db->addAnswer($data[id], $this->answers);//проверяем есть ли новые ответы если да то add
 			//end редактирование существующего вопроса
 		}
+	}
+
+	function start_question($options = null){
+		$option = array(
+										'action' => '', 
+										'method' => 'post', 
+										'enctype' => 'multipart/form-data',
+										'Fclass' => '',
+										'Iclass' => '',
+										'Itype' => 'radio',
+									  'submit' => array(
+									  									array(
+									  													'value' => 'Следующий вопрос',
+									  													'name' => 'reply',
+									  													'class' => ''
+									  												)
+									  								),
+									);
+
+		if($options != null) {
+			$count = 0;
+			while (count($options) != $count) {
+				$option[key($options)] = $options[key($options)];
+				$count++;
+				next($options);
+			}
+		}
+
+		if($this->question !=null){
+			$render = "<form class=\"$option[Fclass]\" action=\"$option[action]\" method=\"$option[method]\" enctype=\"$option[enctype]\">";
+			$render .= "<input type=\"hidden\" name=\"id\" value=\"". $this->question[quest][id] ."\">";
+			$render .= "<h2>".$this->question[quest][name]."</h2>";
+
+			foreach ($this->question[answers] as $key ) {
+				$render .= "<p><input name=\"quest_id\" type=\"$option[Itype]\" value=\"$key[id]\">$key[name]</p>";
+			}
+
+			foreach ($option[submit] as $key) { //кнопки
+						$render .= "<input class=\"$key[class]\" value=\"$key[value]\" type=\"submit\" name=\"$key[name]\">";
+			}
+			$render .="</form>";
+			return $render;
+		}else return "error: The question was not uploaded";
 	}
 
 }

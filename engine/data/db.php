@@ -8,7 +8,6 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/engine/data/session.php';
 $db = 'mysql:host='.$config[host].';dbname='.$config[dbname]; 
 
 R::setup( $db, $config[dbuser], $config[dbpassword] );
-//R::freeze(true);
 $db = new database('testtitle', 'questions', 'answers' ,'users');
 
 ?>

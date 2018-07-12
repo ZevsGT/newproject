@@ -97,5 +97,4 @@ unset($_POST);
 	echo $template->render(array('error' => $error, 'login' => $_POST[login]));
 
 }
-
 ?>

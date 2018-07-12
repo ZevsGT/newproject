@@ -10,7 +10,7 @@
                 <input type="hidden" name="id" value="{{ interv.id }}">
                 <input type="text" name="name" id="name" required placeholder="Название теста" class="w100 border" value="{{ interv.name }}">
     
-                <input value="Далее" type="submit" id="submitPP" name="further">
+                <input value="Готово" type="submit" id="submitPP" name="further">
                 <br><br>
             </form>
         </div>
