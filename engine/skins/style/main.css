@@ -1,0 +1,494 @@
+a {
+	color: #fff;
+	list-style: none;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #fff;
+	list-style: none;
+	text-decoration: none;
+	opacity: .8;
+}
+
+hr {
+border: 0;
+height: 1px;
+background: #333;
+background-image: -webkit-linear-gradient(left, #f7f7f7, #333, #f7f7f7);
+background-image: -moz-linear-gradient(left, #f7f7f7, #333, #f7f7f7);
+background-image: -ms-linear-gradient(left, #f7f7f7, #333, #f7f7f7);
+background-image: -o-linear-gradient(left, #f7f7f7, #333, #f7f7f7);
+}
+
+.hb{
+height: 50px;
+width: 1px;
+background: #333;
+background-image: -webkit-linear-gradient(top, #333, #333, #f7f7f7);
+background-image: -moz-linear-gradient(top, #333, #333, #f7f7f7);
+background-image: -ms-linear-gradient(top, #333, #333, #f7f7f7);
+background-image: -o-linear-gradient(top, #333, #333, #f7f7f7);
+}
+
+.ht{
+height: 50px;
+width: 1px;
+background: #333;
+background-image: -webkit-linear-gradient(bottom, #333, #333, #f7f7f7);
+background-image: -moz-linear-gradient(bottom, #333, #333, #f7f7f7);
+background-image: -ms-linear-gradient(bottom, #333, #333, #f7f7f7);
+background-image: -o-linear-gradient(bottom, #333, #333, #f7f7f7);
+}
+
+.wr{
+height: 50px;
+width: 1px;
+background: #333;
+background-image: -webkit-linear-gradient(left, #333, #333, #f7f7f7);
+background-image: -moz-linear-gradient(left, #333, #333, #f7f7f7);
+background-image: -ms-linear-gradient(left, #333, #333, #f7f7f7);
+background-image: -o-linear-gradient(left, #333, #333, #f7f7f7);
+}
+
+.wl{
+height: 50px;
+width: 1px;
+background: #333;
+background-image: -webkit-linear-gradient(right, #333, #333, #f7f7f7);
+background-image: -moz-linear-gradient(right, #333, #333, #f7f7f7);
+background-image: -ms-linear-gradient(right, #333, #333, #f7f7f7);
+background-image: -o-linear-gradient(right, #333, #333, #f7f7f7);
+}
+
+.navbar-dark {
+	background-color: #4D3594;
+}
+
+.btn-danger {
+	background-color: #E6255C;
+}
+
+.btn-outline-danger {
+	color: #ff4546;
+	border-color: #ff4546;
+}
+
+.b1{
+	background-color: #674abe;
+	min-height: 560px!important;
+	color: #fff;
+	text-align: center;
+	background-image: url(../images/fon-min.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	text-shadow: #000 0 0 3px;
+}
+
+
+.b2{
+	background-color: #f7f7f7;
+	min-height: 560px!important;
+}
+
+.b3 {
+	background-color: #674abe;
+	min-height: 560px;
+}
+
+.zl {
+	font-size: 2.8rem;
+}
+
+.dzh1 {
+	color: #fff;
+	text-align: center;
+	margin: 30px 0;
+}
+
+.dzh2 {
+	color: #333;
+	text-align: center;
+	margin: 30px 0;
+}
+
+.bZakaz {
+	text-decoration: none;
+	background-color: #ff4546;
+	font-size: 2rem;
+	color: #fff;
+	padding: 15px 10px;
+	border-radius: 6px;
+	transition: 0.3s;
+	font-family: 'Open Sans H',sans-serif;
+	box-shadow: #000 0 0 3px;
+	display: block;
+}
+
+.bZakaz:hover {
+	background-color: #FF6B6B;
+	color: #fff;
+	text-decoration: none;
+}
+
+.bgs {
+	background-color: #4D3594;
+}
+
+.spisock {
+	
+}
+
+.spisock ul li {
+	float: left;
+	color: #fff;
+	font-size: 1.65rem;
+	font-family: 'Open Sans H',sans-serif;
+	list-style-type: none;
+	text-shadow: #000 0 0 5px;
+}
+
+.spisock ul li:first-child{
+	margin-left: 0;
+}
+
+.spisock ul li:before{
+	content: "✔ ";
+	color: #fff;
+}
+
+.spisock2 ul li {
+	color: #333;
+	font-size: 1.3rem;
+	font-family: 'Open Sans H',sans-serif;
+	list-style-type: none;
+}
+
+
+.spisock2 ul li:before{
+	content: "✔ ";
+	color: #333;
+}
+
+.fastyle {
+	width: 35px; 
+	padding-left: 50%;
+	margin-bottom: 20px;
+}
+
+footer {
+	background-color: #252525;
+	min-height: 50px;
+	color: #cdcdcd;
+}
+
+.Mfoot {
+	color: #cdcdcd;
+}
+
+.Mfoot h5 {
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.Mfoot ul {
+	-webkit-padding-start: 0px;
+}
+
+.Mfoot ul li {
+	list-style-type: none;
+	margin: 0;
+	font-weight: 300;
+	font-size: 13px;
+}
+
+.Mfoot ul li a{
+	color: #cdcdcd;
+	transition: .3s;
+}
+
+.Mfoot ul li a:hover{
+	color: #957fd5;
+	text-decoration: none;
+}
+
+.Mfoot a{
+	color: #cdcdcd;
+	transition: .3s;
+	opacity: .8;
+}
+
+.Mfoot a:hover{
+	color: #cdcdcd;
+	text-decoration: none;
+	opacity: 1;
+}
+
+.Mfoot img {
+	border: solid 1px #fff;
+	border-radius: 6px;
+	opacity: .8;
+	margin-bottom: 5px;
+}
+
+.iconsS {
+	color: #fff;
+	opacity: .8;
+	text-decoration: none;
+	margin: 0 5px;
+	border: solid 1px #fff;
+	border-radius: 6px;
+	width:57px;
+ 	height:57px;
+ 	display:block;
+ 	text-align:center;
+ 	padding: 10px 0;
+ 	transition: 0.3s;
+}
+
+.iconsS:hover {
+	color: #fff;
+	opacity: 1;
+	text-decoration: none;
+}
+
+.iconsP {
+	color: #fff;
+	opacity: .8;
+	text-decoration: none;
+	margin: 0 5px;
+ 	text-align:center;
+}
+
+
+
+#registr { /* вся форма */
+  max-width: 400px;
+  padding: 2%;
+  border-radius: 3px;
+  color: #fff;
+  
+}
+#registr label { /* наименование полей */
+  float: left;
+  display: block;
+  clear: right;
+}
+#registr .w100 { /* поля */
+  
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 1.5%;
+}
+#registr .border { /* граница полей */
+  border-radius: 1px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #C0C0C0 #D9D9D9 #D9D9D9;
+  box-shadow: 0 1px 1px rgba(255,255,255,.5), 0 1px 1px rgba(0,0,0,.1) inset;
+}
+#registr .border:focus {
+  outline: none;
+  border-color: #abd9f1 #bfe3f7 #bfe3f7;
+}
+#registr .border:hover {
+  border-color: #7eb4ea #97cdea #97cdea;
+}
+#registr .border:focus::-moz-placeholder { /* убрать при фокусе первоначальный текст поля */
+  color: transparent;
+}
+#registr .border:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+#registr .border:not(:focus):not(:hover):valid { /* правильно заполненные поля */
+  opacity: .8;
+}
+
+#registr br {
+  height: 0;
+  clear: both;
+}
+
+
+
+#feedback-form { /* вся форма */
+  max-width: 400px;
+  padding: 2%;
+  border-radius: 3px;
+  color: #fff;
+  
+}
+#feedback-form label { /* наименование полей */
+  float: left;
+  display: block;
+  clear: right;
+}
+#feedback-form .w100 { /* поля */
+  
+  max-width: 400px;
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 1.5%;
+}
+#feedback-form .border { /* граница полей */
+  border-radius: 1px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #C0C0C0 #D9D9D9 #D9D9D9;
+  box-shadow: 0 1px 1px rgba(255,255,255,.5), 0 1px 1px rgba(0,0,0,.1) inset;
+}
+#feedback-form .border:focus {
+  outline: none;
+  border-color: #abd9f1 #bfe3f7 #bfe3f7;
+}
+#feedback-form .border:hover {
+  border-color: #7eb4ea #97cdea #97cdea;
+}
+#feedback-form .border:focus::-moz-placeholder { /* убрать при фокусе первоначальный текст поля */
+  color: transparent;
+}
+#feedback-form .border:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+#feedback-form .border:not(:focus):not(:hover):valid { /* правильно заполненные поля */
+  opacity: .8;
+}
+#submitFF { /* кнопка "Отправить" */
+  height: 60px; 
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.2) inset;
+  background: #ff4546;
+  color: #fff;
+  font-size: 1.8rem;
+  transition: 0.3s;
+  max-width: 400px;
+  width: 100%;
+  
+}
+#feedback-form br {
+  height: 0;
+  clear: both;
+}
+#submitFF:hover {
+  background: #FF6B6B;
+  cursor: pointer;
+}
+#submitFF:focus {
+  box-shadow: 0 1px 1px #fff, inset 0 1px 2px rgba(0,0,0,.8), inset 0 -1px 0 rgba(0,0,0,.05);
+}
+
+#infoblock {
+	color: #fff; 
+	background-color: #29BC3F;
+	text-align: center; 
+	max-width: 400px;
+	overflow: hidden;
+	border-radius: 3px;
+}
+
+.checkbox {
+	width: 20px;             
+	height: 20px;  
+	margin-right: 10px; 
+}
+
+.confidenty {
+	font-size: 1rem;
+	padding: 10px 0;
+}
+
+ .razdel {
+ 	border: solid 1px #cdcdcd;
+ 	padding: 4px;
+ 	border-radius: 6px;
+ 	margin: 50px;
+ 	text-align: center;
+ }
+
+ .btnrz {
+ 	color: #333;
+ 	margin: 5px;
+ 	border: solid 1px #cdcdcd;
+ 	padding: 5px;
+ 	border-radius: 3px;
+ }
+
+ .btnrz:hover {
+ 	color: #333;
+ }
+
+ #addportfolio { /* вся форма */
+  max-width: 900px;
+  padding: 2%;
+  border-radius: 3px;
+  
+  
+}
+#addportfolio label { /* наименование полей */
+  float: left;
+  display: block;
+  clear: right;
+}
+.w100 { /* поля */
+  
+  max-width: 900px;
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 1.5%;
+}
+.border { /* граница полей */
+  border-radius: 1px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #C0C0C0 #D9D9D9 #D9D9D9;
+  box-shadow: 0 1px 1px rgba(255,255,255,.5), 0 1px 1px rgba(0,0,0,.1) inset;
+}
+.border:focus {
+  outline: none;
+  border-color: #abd9f1 #bfe3f7 #bfe3f7;
+}
+.border:hover {
+  border-color: #7eb4ea #97cdea #97cdea;
+}
+.border:focus::-moz-placeholder { /* убрать при фокусе первоначальный текст поля */
+  color: transparent;
+}
+.border:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+.border:not(:focus):not(:hover):valid { /* правильно заполненные поля */
+  opacity: .8;
+}
+
+.Plist {
+	border: solid 1px #cdcdcd;
+	padding: 5px;
+	margin: 10px 0;
+	min-height: 40px;
+}
+
+.Plist button {
+	border: solid 1px #cdcdcd;
+	border-radius: 3px;
+	background: #ccc;
+}
+
+.Plist button:hover {
+	opacity: .8;
+	cursor: pointer;
+} 
+
+.Plist a {
+	color: #fff;
+	border: solid 1px #cdcdcd;
+	border-radius: 3px;
+	background: #4D3594;
+	padding: 6px;
+}
+
+.fright {
+	float: right;
+}
