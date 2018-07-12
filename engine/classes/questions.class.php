@@ -6,7 +6,7 @@ class questions extends interview{
 	private $question;
 	private $answers ;
 
-	function loadQuest($interviewID){ // записывает все id вопросов и ответов в класс
+	function loadQuests($interviewID){ // загружаем все вопросы из опроса
 		$db = new database('testtitle', 'questions', 'answers' ,'users');
 		
 		$this->interview = $db->loadInterview($interviewID);
@@ -22,8 +22,10 @@ class questions extends interview{
 		}
 	}
 
-	function loadQust($QustID){ // загружает вопрос с ответами по id
-		$Qust = R::load($this->Tname_Qustion, $QustID);
+	function loadQuest($QustID){ // загружает 1 вопрос с ответами по id
+		$db = new database('testtitle', 'questions', 'answers' ,'users');
+		$Qust = $db->loadQustion($QustID);
+
 		$quest['id'] = $Qust->id; //в RedBeanPHP есть функция которая преобразует оюъект класса в массив (название не смог найти)
 		$quest['name'] = $Qust->name;
 

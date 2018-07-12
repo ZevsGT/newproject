@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/engine/lib/rb.php';
+require_once 'rb.php';
 	
 class database {
 	private $Tname_interview;
@@ -15,11 +15,13 @@ class database {
 		$this->Tname_user = $Tname_user;
 	}
 
-
 	function loadInterview($interviewID){
 		return R::load($this->Tname_interview, $interviewID);
 	}
 
+	function loadQustion($QustID){
+		return R::load($this->Tname_Qustion, $QustID);
+	}
 
 	function addOptions($num_quest, $passing_score, $interviewID){//добавляет количество вопросов на один тест и проходной балл
 		$interview = R::load($this->Tname_interview, $interviewID);

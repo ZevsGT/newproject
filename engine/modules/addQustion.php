@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/engine/data/head.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/engine/head.php';
 
 
 if(isset($_POST[further])){

@@ -1,6 +1,6 @@
 <?php
 require_once 'engine/lib/Twig/Autoloader.php';
-require_once 'engine/data/head.php';
+require_once 'engine/head.php';
 
 Twig_Autoloader::register();
 
@@ -53,21 +53,36 @@ unset($_POST);
  		$data = $db->loadInterview($_GET[id]);
  		$quest = new questions();
  		$quest->load_interview($data);
- 		$quest->loadQuest($data[id]);
-
+ 		$quest->loadQuests($data[id]);
  		$interview = $quest->getInterview();
  		$questions = $quest->getQuestionsList();
- 
  		$template = $admin->loadTemplate('editInterview.tpl');
 		echo $template->render(array('name' => $interview, 'quests' => $questions));
  		
  	}elseif($_GET[mod] == 'editquestions' && isset($_GET[id])){ // редактирование существующегов вопроса
-
+ 				$qust = new questions();
+ 				$qust->loadQuest($_GET[id]);
+ 				$rend = $qust->renderEditor(array(
+	 																					'Iclass' => 'w100 border', 
+	 																					'action' => '/engine/modules/editQustion.php',
+	 																					'submit' => array(
+										  																				array(
+										  																								'value' => 'Готово',
+										  																								'name' => 'further',
+										  																								'class' => ''
+										  																							)
+										  																				)
+ 																					));
+	 			$template = $admin->loadTemplate('addQustions.tpl');
+				echo $template->render(array('rend' => $rend));
  				
-
- 	}elseif($_GET[mod] == 'editInterviewName' && isset($_GET[id])){ // страница с редактирвания опроса
+ 	}elseif($_GET[mod] == 'editInterviewName' && isset($_GET[id])){ // страница с редактирвания названия опроса
 
  		
+ 		$interview = $db->loadInterview($_GET[id]);
+ 		
+ 		$template = $admin->loadTemplate('editTitleTest.tpl');
+		echo $template->render(array('interv' => $interview));
 
  	}else{//главная страница со списком опросов
  		unset($_SESSION['Title_Test']);
