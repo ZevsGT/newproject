@@ -67,10 +67,12 @@ class questions extends interview{
 
 	function data_load($data){// загружает данные вопроса которые были свормированы в функции data_preparation() или get_data()
 		
-		$question = $this->questions_list[$data['questions_rand_key'][$data['user_num']]];
-		shuffle($question[answers]);
-		$this->question = $question;
 		
+		$question = $this->questions_list[$data['questions_rand_key'][$data['user_num']]];
+		if($question[answers] != null){
+			shuffle($question[answers]);
+		}
+		$this->question = $question;
 		$this->user_num = $data['user_num'];
 		$this->questions_rand_key = $data['questions_rand_key'];
 		$this->user_question = $data['user_question'];
@@ -86,7 +88,7 @@ class questions extends interview{
 	}
 
 	function data_processing($answer){// обработка данных из формы ответа на вопрос
-		$this->user_question[] = array('id' => $answer[id], 'quest_id' => $answer[quest_id]);
+		$this->user_question[] = array('id' => $answer[id], 'answer_id' => $answer[answer_id]);
 		$this->user_num++;
 	}
 # end Оброботка опроса пользователя при прохождении опроса
@@ -181,26 +183,26 @@ class questions extends interview{
 		return  $render;
 	}
 
-	function eFormHandler($data, $flag, $interviewID = null){//функция обработки данных с формы || ее можно оптимизировать
+	function eFormHandler($data, $flag, $interviewID = null){//функция обработки данных с формы || ее можно оптимизировать, а именно ветви add и edit объеденить в одну
 		
 		$db = new database('testtitle', 'questions', 'answers' ,'users');
 		
-		if($flag == 'add'){
+		if($flag == 'add'){// добавлнеие нового вопроса
 			// в цикле записываем ответы
 			$count = 0;
 			while (count($data) != $count) {
-				$pos = strpos(key($data), 'true');
-				if ($pos === false) {   
-				    $pos = strpos(key($data), 'false');
-						if ($pos === false) {
+				$pos = strpos(key($data), 'true');//проверка данных на встречающийся вопросы с индикатором true (верный ответ)
+				if ($pos === false) {  //если ничего не найденно  
+				    $pos = strpos(key($data), 'false');//проверка данных на встречающийся вопросы с индикатором false (не верный ответ)
+						if ($pos === false) {//если ничего не найденно
 						    $count++;
 								next($data);
-						} else {
+						} else {//если найден не верный ответ
 								if($data[key($data)] != '') $this->loadAnswers($data[key($data)], 0);//не верные ответы
 								$count++;
 								next($data);
 						}
-				} else {
+				} else {//если найден верный ответ
 						$this->loadAnswers($data[key($data)], 1);//верные ответы
 						$count++;
 						next($data);
@@ -210,31 +212,31 @@ class questions extends interview{
 			//$return= array('id' => $interviewID, 'name' => $data['name'], 'answers' => $this->answers);
 			return;
 			//end в цикле записываем  ответы
-		}elseif($flag == 'edit'){
+		}elseif($flag == 'edit'){// редактирование существующего вопроса
 
 			$db->editQustionName($data[id], $data[name]);
 			//редактирование существующего вопроса
 			$count = 0;
 			while (count($data) != $count) {
-				$pos = strpos(key($data), 'true');
-				if ($pos === false) {   
-				    $pos = strpos(key($data), 'false');
-						if ($pos === false) {
+				$pos = strpos(key($data), 'true');//проверка данных на встречающийся вопросы с индикатором true (верный ответ)
+				if ($pos === false) {  //если ничего не найденно 
+				    $pos = strpos(key($data), 'false');//проверка данных на встречающийся вопросы с индикатором false (не верный ответ)
+						if ($pos === false) {//если ничего не найденно
 						    $count++;
 								next($data);
-						} else {
+						} else {//если найден не верный ответ
 								if($data[key($data)] != '') {
 									$str = explode('_', key($data));
 									if($str[2] != null) $db->editAnswerName($str[2], $data[key($data)]);//обновление уже существующего в бд
-									else $this->loadAnswers($data[key($data)], 0);
+									else $this->loadAnswers($data[key($data)], 0);//новые не верные ответы
 								}
 								$count++;
 								next($data);
 						}
-				} else {
+				} else {//если найден верный ответ
 						$str = explode('_', key($data));
 						if($str[2] != null) $db->editAnswerName($str[2], $data[key($data)]);//обновление уже существующего в бд
-						else $this->loadAnswers($data[key($data)], 1);//верные ответы
+						else $this->loadAnswers($data[key($data)], 1);//новые верные ответы
 						$count++;
 						next($data);
 				}
@@ -244,7 +246,7 @@ class questions extends interview{
 		}
 	}
 
-	function start_question($options = null){
+	function start_question($options = null){//рендерит форму на прохождение теста
 		$option = array(
 										'action' => '', 
 										'method' => 'post', 
@@ -276,7 +278,7 @@ class questions extends interview{
 			$render .= "<h2>".$this->question[quest][name]."</h2>";
 
 			foreach ($this->question[answers] as $key ) {
-				$render .= "<p><input name=\"quest_id\" type=\"$option[Itype]\" value=\"$key[id]\">$key[name]</p>";
+				$render .= "<p><input name=\"answer_id\" type=\"$option[Itype]\" value=\"$key[id]\">$key[name]</p>";
 			}
 
 			foreach ($option[submit] as $key) { //кнопки

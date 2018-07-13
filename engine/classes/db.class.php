@@ -19,8 +19,16 @@ class database {
 		return R::load($this->Tname_interview, $interviewID);
 	}
 
+	function loadUser($userID){
+		return R::load($this->Tname_user, $userID);
+	}
+
 	function loadQustion($QustID){
 		return R::load($this->Tname_Qustion, $QustID);
+	}
+
+	function loadAnswer($AnswerID){
+		return R::load($this->Tname_answers, $AnswerID);
 	}
 
 	function addOptions($num_quest, $passing_score, $interviewID){//добавляет количество вопросов на один тест и проходной балл
@@ -96,6 +104,10 @@ class database {
 		$answer = R::load($this->Tname_answers, $answerID);
 		$answer->name = $name;
 		R::store( $answer );
+	}
+
+	function get_count_Qustion($interviewID){
+		R::count($this->Tname_Qustion, 'testtitle_id = ?', array($interviewID));
 	}
 
 }

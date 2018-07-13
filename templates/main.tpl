@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="templates/style/main.css">
     <!-- icons CSS -->
     <link rel="stylesheet" href="templates/style/font-awesome.min.css">
+    <script src="/templates/js/jquery-3.3.1.min.js"></script>
+    <script src="/templates/js/bootstrap.min.js"></script>
     <title>Тестирование</title>
    
   </head>
@@ -27,7 +29,6 @@
  	  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     
-    <script src="//daqwin.com/templates/js/jquery-3.3.1.min.js"></script>
-    <script src="//daqwin.com/templates/js/bootstrap.min.js"></script>
+    
   </body>
 </html>
