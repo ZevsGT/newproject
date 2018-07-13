@@ -53,15 +53,18 @@ class questions extends interview{
 # Оброботка опроса пользователя при прохождении опроса
 
 	function data_preparation(){//формирует стартовые данные
-
 		if($this->questions_list != null && $this->interview != null){
-			$key = array_rand($this->questions_list, $this->interview[num_quest]);
-			$data['interview_id'] =  $this->interview[id];
-			$data['questions_rand_key'] =  $key;
-			$data['user_num'] = 0;
-			$data['user_question'] = null;
-			return $data;
-		}else return 'error: Survey data not uploaded';
+			if($this->interview[num_quest] != null){
+				if(count($this->questions_list) >= $this->interview[num_quest]){
+					$key = array_rand($this->questions_list, $this->interview[num_quest]);
+					$data['interview_id'] =  $this->interview[id];
+					$data['questions_rand_key'] =  $key;
+					$data['user_num'] = 0;
+					$data['user_question'] = null;
+					return $data;
+				}else echo "error: Number of questions in the database is less than in the survey";
+			}else echo "error: The database did not record the number of questions";
+		}else echo 'error: Survey data not uploaded';
 
 	}
 
