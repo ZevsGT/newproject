@@ -1,9 +1,9 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/engine/class.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/engine/head.php';
 
 if(isset($_POST[further])){
 	
-	$editQ = new interview('testtitle', 'questions', 'answers' ,'users');
+	$editQ = new questions();
 	$editQ->eFormHandler($_POST,'edit');
 
 	

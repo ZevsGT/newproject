@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="engine/skins/style/main.css">
     <!-- icons CSS -->
     <link rel="stylesheet" href="templates/style/font-awesome.min.css">
-    
+
+
+    <script src="/engine/skins/js/jquery-3.3.1.min.js"></script>
+    <script src="/engine/skins/js/bootstrap.min.js"></script>
     <title>Админ панель</title>
   </head>
   <body>
@@ -21,10 +24,5 @@
     {% endblock %}
 
     {% include 'footer.tpl' %}
- 	<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    
-    <script src="engine/skins/js/jquery-3.3.1.min.js"></script>
-    <script src="engine/skins/js/bootstrap.min.js"></script>
   </body>
 </html>

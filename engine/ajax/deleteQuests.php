@@ -1,6 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/engine/class.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/engine/head.php';
 
-$del = new interview('testtitle', 'questions', 'answers' ,'users');
-$del->deleteQustion($_POST[id]);
+$db->deleteQustion($_POST[id]);
 ?>

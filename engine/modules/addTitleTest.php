@@ -1,11 +1,9 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/engine/class.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/engine/head.php';
 
 if(isset($_POST[further])){
 
-		$addI = new interview('testtitle', 'questions', 'answers' ,'users');
-		$addI->addInterviewName($_POST[name], $_SESSION['logged_user']['id']);
-		$idInter = $addI->getInterview();
+		$idInter = $db->addInterviewName($_POST[name], $_SESSION['logged_user']['id']);
 		$_SESSION['Title_Test']['id'] = $idInter[id];
 
 		header('location: /admin.php?mod=addtest');

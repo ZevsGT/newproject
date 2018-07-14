@@ -1,11 +1,13 @@
 <?PHP 
 require_once 'config.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/rb.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/engine/classes/db.class.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/engine/data/session.php';
 
 //подключение бд
 $db = 'mysql:host='.$config[host].';dbname='.$config[dbname]; 
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/engine/lib/rb.php';
 R::setup( $db, $config[dbuser], $config[dbpassword] );
-//R::freeze(true);
+$db = new database('testtitle', 'questions', 'answers' ,'users');
 
 ?>
