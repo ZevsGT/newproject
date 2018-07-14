@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июл 11 2018 г., 18:47
+-- Время создания: Июл 12 2018 г., 22:47
 -- Версия сервера: 5.6.38
 -- Версия PHP: 7.0.26
 
@@ -40,14 +40,47 @@ CREATE TABLE `answers` (
 --
 
 INSERT INTO `answers` (`id`, `name`, `flag`, `questions_id`) VALUES
-(135, 'true', 1, 60),
-(136, 'false', 0, 60),
-(137, 'false', 0, 60),
+(135, 'true111', 1, 60),
+(136, 'false111', 0, 60),
+(137, 'false111', 0, 60),
 (138, 'верный', 1, 61),
 (139, 'не верны', 0, 61),
 (140, 'нет', 0, 61),
 (141, 'нет', 0, 61),
-(142, 'false', 0, 60);
+(142, 'false111', 0, 60),
+(145, 'иваива', 1, 63),
+(146, 'иавиавива', 0, 63),
+(162, '1', 0, 60),
+(168, 'true', 1, 72),
+(169, 'false', 0, 72),
+(170, 'true 2', 1, 73),
+(171, 'false 2', 0, 73),
+(172, 'false 2', 0, 73),
+(173, 'false 2', 0, 73),
+(174, 'true 3', 1, 74),
+(175, 'false 3', 0, 74),
+(176, 'false 3', 0, 74),
+(177, 'true 4', 1, 75),
+(178, 'false 4', 0, 75),
+(179, 'true 5', 1, 76),
+(180, 'false 5', 0, 76),
+(181, 'true 6', 1, 77),
+(182, 'false 6', 0, 77),
+(183, 'true 7', 1, 78),
+(184, 'false 7', 0, 78),
+(185, 'true 8', 1, 79),
+(186, 'false 8', 0, 79),
+(187, 'true 9', 1, 80),
+(188, 'false 9', 0, 80),
+(189, 'true 10', 1, 81),
+(190, 'false10', 0, 81),
+(191, 'false 10', 0, 81),
+(192, 'false 10', 0, 81),
+(193, 'false 10', 0, 81),
+(194, 'false 10', 0, 81),
+(195, 'не верный', 0, 81),
+(196, 'false 10', 0, 81),
+(197, 'false 10', 0, 81);
 
 -- --------------------------------------------------------
 
@@ -66,8 +99,19 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `name`, `testtitle_id`) VALUES
-(60, 'вопрос обновление', 45),
-(61, 'название 2', 45);
+(60, 'вопрос обновление111', 45),
+(61, 'название 21', 45),
+(63, 'иапиави', 45),
+(72, 'вопрос 1', 56),
+(73, 'вопрос 2', 56),
+(74, 'вопрос 3', 56),
+(75, 'вопрос 4', 56),
+(76, 'вопрос 5', 56),
+(77, 'вопрос 6', 56),
+(78, 'вопрос 7', 56),
+(79, 'вопрос 8', 56),
+(80, 'вопрос 9', 56),
+(81, 'вопрос 10', 56);
 
 -- --------------------------------------------------------
 
@@ -88,7 +132,8 @@ CREATE TABLE `testtitle` (
 --
 
 INSERT INTO `testtitle` (`id`, `name`, `num_quest`, `passing_score`, `users_id`) VALUES
-(45, 'название1', 2, 50, 1);
+(45, 'название121', 3, 50, 1),
+(56, 'Тест', 5, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -150,25 +195,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
 
 --
 -- AUTO_INCREMENT для таблицы `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT для таблицы `testtitle`
 --
 ALTER TABLE `testtitle`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

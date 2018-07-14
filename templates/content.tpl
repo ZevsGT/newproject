@@ -3,7 +3,7 @@
     <h2 class="dzh2">Тесты</h2>
     <ul>
     {% for test in tests %}
-        <li><a href="?id={{ test.id }}">{{ test.name }}</a></li>
+        <li><a href="?mod=quest&id={{ test.id }}">{{ test.name }}</a></li>
     {% endfor %}
     </ul>
 </div>

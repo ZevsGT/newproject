@@ -1,6 +1,7 @@
 <?php
 require_once 'engine/lib/Twig/Autoloader.php';
-require_once 'engine/class.php';
+require_once 'engine/head.php';
+
 Twig_Autoloader::register();
 
 $loader = new Twig_Loader_Filesystem('engine/skins');
@@ -32,11 +33,11 @@ if (isset ($_POST['submitFF'])) {
 
 
 if( isset($_SESSION['logged_user'])){ //если авторизован и группа admin
-$test = new interview('testtitle', 'questions', 'answers' ,'users');
-	unset($_POST);
+unset($_POST);
  	if($_GET['mod']=='addtest'){
 
-	 		if(isset($_SESSION['Title_Test'])){//если название теста было заполнено, выводим форму с вопросами
+	 		if(isset($_SESSION['Title_Test']['id'])){//если название теста было заполнено, выводим форму с вопросами
+	 			$test = new questions();
 	 			$rend = $test->renderEditor(array('Iclass' => 'w100 border', 'action' => '/engine/modules/addQustion.php'));
 	 			$template = $admin->loadTemplate('addQustions.tpl');
 				echo $template->render(array('rend' => $rend));
@@ -49,17 +50,19 @@ $test = new interview('testtitle', 'questions', 'answers' ,'users');
  	}elseif($_GET[mod] == 'editinterview' && isset($_GET[id])){ // страница с редактирвания опроса
 
  		$_SESSION['Title_Test'][id] = $_GET[id]; // используеться для возврата на страницу с вопросами 
- 		$test->addinterview($_GET[id]);
- 		$interview = $test->getInterview();
- 		$questions = $test->getQuestionsList();
- 
+ 		$data = $db->loadInterview($_GET[id]);
+ 		$quest = new questions();
+ 		$quest->load_interview($data);
+ 		$quest->loadQuests($data[id]);
+ 		$interview = $quest->getInterview();
+ 		$questions = $quest->getQuestionsList();
  		$template = $admin->loadTemplate('editInterview.tpl');
 		echo $template->render(array('name' => $interview, 'quests' => $questions));
-
+ 		
  	}elseif($_GET[mod] == 'editquestions' && isset($_GET[id])){ // редактирование существующегов вопроса
-
- 				$test->addQust($_GET[id]);
- 				$rend = $test->renderEditor(array(
+ 				$qust = new questions();
+ 				$qust->loadQuest($_GET[id]);
+ 				$rend = $qust->renderEditor(array(
 	 																					'Iclass' => 'w100 border', 
 	 																					'action' => '/engine/modules/editQustion.php',
 	 																					'submit' => array(
@@ -72,11 +75,11 @@ $test = new interview('testtitle', 'questions', 'answers' ,'users');
  																					));
 	 			$template = $admin->loadTemplate('addQustions.tpl');
 				echo $template->render(array('rend' => $rend));
+ 				
+ 	}elseif($_GET[mod] == 'editInterviewName' && isset($_GET[id])){ // страница с редактирвания названия опроса
 
- 	}elseif($_GET[mod] == 'editInterviewName' && isset($_GET[id])){ // страница с редактирвания опроса
-
- 		$test->addinterview($_GET[id]);
- 		$interview = $test->getInterview();
+ 		
+ 		$interview = $db->loadInterview($_GET[id]);
  		
  		$template = $admin->loadTemplate('editTitleTest.tpl');
 		echo $template->render(array('interv' => $interview));
