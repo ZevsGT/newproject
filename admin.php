@@ -38,9 +38,10 @@ unset($_POST);
 
 	 		if(isset($_SESSION['Title_Test']['id'])){//если название теста было заполнено, выводим форму с вопросами
 	 			$test = new questions();
+	 			$count = $db->get_count_Qustion($_SESSION['Title_Test']['id']);// считаем количестов вопросов в опросе
 	 			$rend = $test->renderEditor(array('Iclass' => 'w100 border', 'action' => '/engine/modules/addQustion.php'));
 	 			$template = $admin->loadTemplate('addQustions.tpl');
-				echo $template->render(array('rend' => $rend));
+				echo $template->render(array('rend' => $rend, 'count' => $count));
 	 		}else{// форма с названием теста
 				$template = $admin->loadTemplate('addTitleTest.tpl');
 				echo $template->render(array('error' => $_SESSION['error']));

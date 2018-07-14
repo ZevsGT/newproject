@@ -12,4 +12,10 @@
       </div>
   </div>
 
+  <script type="text/javascript">
+    if( {{ count }} < 10 ){
+      $("input[name=close]").prop('disabled', $('form.poll :radio:checked').length == 0);
+    }
+  </script>
+
 {% endblock %}

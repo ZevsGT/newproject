@@ -5,6 +5,7 @@ class interview {
 	protected $user_results;
 	protected $user_question;
 	protected $user_num;
+	protected $db;
 
 	function load_interview($interviewID){
 			$this->interview = $interviewID;
@@ -38,7 +39,6 @@ class interview {
 	}
 
 	function interview_result(){
-		//$db = new database('testtitle', 'questions', 'answers' ,'users');
 		foreach ($this->user_question as $key) {
 			$Qustion = $this->db->loadQustion($key[id]);
 			$Answer = $this->db->loadAnswer($key[answer_id]);

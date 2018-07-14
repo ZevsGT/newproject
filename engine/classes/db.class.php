@@ -15,19 +15,19 @@ class database {
 		$this->Tname_user = $Tname_user;
 	}
 
-	function loadInterview($interviewID){
+	function loadInterview($interviewID){//загружает данные записи по id из таблицы опроса
 		return R::load($this->Tname_interview, $interviewID);
 	}
 
-	function loadUser($userID){
+	function loadUser($userID){// загружает данные записи по id из таблицы пользоватлеи
 		return R::load($this->Tname_user, $userID);
 	}
 
-	function loadQustion($QustID){
+	function loadQustion($QustID){// загружает данные записи по id из таблицы вопроса
 		return R::load($this->Tname_Qustion, $QustID);
 	}
 
-	function loadAnswer($AnswerID){
+	function loadAnswer($AnswerID){// загружает данные записи по id из таблицы ответа
 		return R::load($this->Tname_answers, $AnswerID);
 	}
 
@@ -107,7 +107,7 @@ class database {
 	}
 
 	function get_count_Qustion($interviewID){
-		R::count($this->Tname_Qustion, 'testtitle_id = ?', array($interviewID));
+		return R::count($this->Tname_Qustion, 'testtitle_id = ?', array($interviewID));
 	}
 
 }
