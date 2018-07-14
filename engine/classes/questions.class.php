@@ -6,7 +6,6 @@ class questions extends interview{
 	protected $question;
 	protected $answers ;
 	protected $questions_rand_key;
-	protected $db;
 
 	function __construct(){
 		$this->db = new database('testtitle', 'questions', 'answers' ,'users');
