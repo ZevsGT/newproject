@@ -6,11 +6,15 @@ class questions extends interview{
 	protected $question;
 	protected $answers ;
 	protected $questions_rand_key;
+	protected $db;
+
+	function __construct(){
+		$this->db = new database('testtitle', 'questions', 'answers' ,'users');
+	}
 
 	function loadQuests($interviewID){ // загружаем все вопросы из опроса
-		$db = new database('testtitle', 'questions', 'answers' ,'users');
-		
-		$this->interview = $db->loadInterview($interviewID);
+	
+		$this->interview = $this->db->loadInterview($interviewID);
 		$interview = R::getAll('SELECT id, name FROM questions WHERE testtitle_id=?', array($interviewID));
 		
 		foreach ($interview as $key ) {
@@ -24,8 +28,8 @@ class questions extends interview{
 	}
 
 	function loadQuest($QustID){ // загружает 1 вопрос с ответами по id
-		$db = new database('testtitle', 'questions', 'answers' ,'users');
-		$Qust = $db->loadQustion($QustID);
+		
+		$Qust = $this->db->loadQustion($QustID);
 
 		$quest['id'] = $Qust->id; //в RedBeanPHP есть функция которая преобразует оюъект класса в массив (название не смог найти)
 		$quest['name'] = $Qust->name;
@@ -69,7 +73,6 @@ class questions extends interview{
 	}
 
 	function data_load($data){// загружает данные вопроса которые были свормированы в функции data_preparation() или get_data()
-		
 		
 		$question = $this->questions_list[$data['questions_rand_key'][$data['user_num']]];
 		if($question[answers] != null){
@@ -188,7 +191,6 @@ class questions extends interview{
 
 	function eFormHandler($data, $flag, $interviewID = null){//функция обработки данных с формы || ее можно оптимизировать, а именно ветви add и edit объеденить в одну
 		
-		$db = new database('testtitle', 'questions', 'answers' ,'users');
 		
 		if($flag == 'add'){// добавлнеие нового вопроса
 			// в цикле записываем ответы
@@ -211,13 +213,13 @@ class questions extends interview{
 						next($data);
 				}
 			}
-			$db->addQustion($interviewID, $data['name'], $this->answers);
+			$this->db->addQustion($interviewID, $data['name'], $this->answers);
 			//$return= array('id' => $interviewID, 'name' => $data['name'], 'answers' => $this->answers);
 			return;
 			//end в цикле записываем  ответы
 		}elseif($flag == 'edit'){// редактирование существующего вопроса
 
-			$db->editQustionName($data[id], $data[name]);
+			$this->db->editQustionName($data[id], $data[name]);
 			//редактирование существующего вопроса
 			$count = 0;
 			while (count($data) != $count) {
@@ -230,7 +232,7 @@ class questions extends interview{
 						} else {//если найден не верный ответ
 								if($data[key($data)] != '') {
 									$str = explode('_', key($data));
-									if($str[2] != null) $db->editAnswerName($str[2], $data[key($data)]);//обновление уже существующего в бд
+									if($str[2] != null) $this->db->editAnswerName($str[2], $data[key($data)]);//обновление уже существующего в бд
 									else $this->loadAnswers($data[key($data)], 0);//новые не верные ответы
 								}
 								$count++;
@@ -238,13 +240,13 @@ class questions extends interview{
 						}
 				} else {//если найден верный ответ
 						$str = explode('_', key($data));
-						if($str[2] != null) $db->editAnswerName($str[2], $data[key($data)]);//обновление уже существующего в бд
+						if($str[2] != null) $this->db->editAnswerName($str[2], $data[key($data)]);//обновление уже существующего в бд
 						else $this->loadAnswers($data[key($data)], 1);//новые верные ответы
 						$count++;
 						next($data);
 				}
 			}
-			if($this->answers != null) $db->addAnswer($data[id], $this->answers);//проверяем есть ли новые ответы если да то add
+			if($this->answers != null) $this->db->addAnswer($data[id], $this->answers);//проверяем есть ли новые ответы если да то add
 			//end редактирование существующего вопроса
 		}
 	}

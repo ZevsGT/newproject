@@ -38,10 +38,10 @@ class interview {
 	}
 
 	function interview_result(){
-		$db = new database('testtitle', 'questions', 'answers' ,'users');
+		//$db = new database('testtitle', 'questions', 'answers' ,'users');
 		foreach ($this->user_question as $key) {
-			$Qustion = $db->loadQustion($key[id]);
-			$Answer = $db->loadAnswer($key[answer_id]);
+			$Qustion = $this->db->loadQustion($key[id]);
+			$Answer = $this->db->loadAnswer($key[answer_id]);
 			$this->user_results[] = array('quest' => $Qustion[name], 'answer' => array('name' => $Answer[name], 'flag' => $Answer[flag]));
 		}	
 	}
@@ -53,6 +53,11 @@ class interview {
 										'enctype' => 'multipart/form-data',
 										'Fclass' => '',
 										'Iclass' => '',
+										'h1class' => '',
+										'trueclass' => '',
+										'falseclass' => '',
+										'questclass' => '',
+										'scoreclass' => '',
 										'result' => 'off',
 									  'submit' => array(
 									  									array(
@@ -73,21 +78,24 @@ class interview {
 		}
 
 		if($option[result] == 'on'){//вывод статистики
-				$render = "<h1>Название опроса: ".$this->interview[name]."</h1>";
+				$render .= "<h1 class=\"$option[h1class]\">Название опроса: ".$this->interview[name]."</h1>";
 				$score = 0;
 				foreach ($this->user_results as $key) {
-				if($key[answer][flag] == true) {
-					$answer = 'верный';
-					$score++;
+					if($key[answer][flag] == true) {
+						$answer = $option[trueclass];
+						$score++;
+					}
+					else $answer = $option[falseclass];
+					$render .= "<div class=\"$option[questclass]\">";
+					$render .= "<h3>Вопрос: $key[quest] </h3>";
+					$render .= "<p class=\"$answer\">Ответ: ".$key[answer][name]."</p>";
+					$render .= "</div>";
 				}
-				else $answer = 'не верный';
-				$render .= "<h3>Вопрос: $key[quest] </h3>";
-				$render .= "<p>Ответ: ".$key[answer][name]."/ $answer</p>";
-			}
-			$render .= "<h2>Набранный балл: $score</h2>";
+			$render .= "<h2 class=\"$option[scoreclass]\">Набранный балл: $score</h2>";
 		}
 
 		$render .= "<form id=\"form\" class=\"$option[Fclass]\" action=\"$option[action]\" method=\"$option[method]\" enctype=\"$option[enctype]\">";
+		$render .="<h2>Введите данные для отправки результата</h2>";
 		$render .= "<input type=\"text\" name=\"name\" required placeholder=\"ФИО\" class=\"$option[Iclass]\" value=\"\"><br>";
 		$render .= "<input type=\"text\" name=\"contacts\" required placeholder=\"E-mail или номер телефона\" class=\"$option[Iclass]\" value=\"\"><br>";
 		foreach ($option[submit] as $key){ //кнопки
