@@ -54,7 +54,7 @@ if($_GET[mod] == 'quest' && isset($_GET[id])){
 			$_SESSION[user_data_result] = $test->get_string_mail();
 			$render = $test->formation_contact_data(array(
 																										'Iclass' => 'w100 border', 
-																										'result' => 'on',//включает вывод результатов
+																										'result' => 'off',//включает вывод результатов
 																										'h1class' => 'h1inter',
 																										'trueclass' => 'true',
 																										'falseclass' => 'false',
