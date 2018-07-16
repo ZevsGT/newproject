@@ -12,12 +12,16 @@ $twig = new Twig_Environment($loader, array(
 if($_GET[mod] == 'quest' && isset($_GET[id])){
 
 	if(isset($_POST[start])){//оброботчик начальной формы
-		$test = new questions();
-		$test->loadQuests($_GET[id]);
-		$data = $db->loadInterview($_GET[id]);//запрос г базе данных
-		$test->load_interview($data);
-		$data = $test->data_preparation();
-		$_SESSION[question_data] = $data;
+		try{
+			$test = new questions();
+			$test->loadQuests($_GET[id]);
+			$data = $db->loadInterview($_GET[id]);//запрос к базе данных
+			$test->load_interview($data);
+			$data = $test->data_preparation();
+			$_SESSION[question_data] = $data;
+		}catch (Exception $e) {
+	    echo 'error: '.$e->getMessage();
+		}
 	}
 
 	if(isset($_POST[reply])){//оброботчик формы с вопросами
@@ -37,24 +41,19 @@ if($_GET[mod] == 'quest' && isset($_GET[id])){
 		
 			$test = new questions();
 			$test->loadQuests($_GET[id]);
-			$data = $db->loadInterview($_GET[id]);//запрос г базе данных
-			$test->load_interview($data);
 			$interview = $test->getInterview();
 			$test->data_load($_SESSION[question_data]);
 
 		if($_SESSION[question_data][user_num] < $interview[num_quest]){//проверка на количество пройденных вопросов	
 			$count = $_SESSION[question_data][user_num]+1;
 			$count = $count.' по счету вопрос из '.$interview[num_quest];//счет вопросаов на вывод
-
-			//$test->data_load($_SESSION[question_data]);
 			$render = $test->start_question();
 		}else{//тут форма с результатами опроса
-			//$test->data_load($_SESSION[question_data]);
 			$test->interview_result();
 			$_SESSION[user_data_result] = $test->get_string_mail();
 			$render = $test->formation_contact_data(array(
 																										'Iclass' => 'w100 border', 
-																										'result' => 'off',//включает вывод результатов
+																										'result' => 'on',//включает вывод результатов
 																										'h1class' => 'h1inter',
 																										'trueclass' => 'true',
 																										'falseclass' => 'false',

@@ -3,7 +3,9 @@
  <div id="onas" class="container-fluid b2">
   <br>
     <h2 class="dzh2"><a href="?mod=editInterviewName&id={{ name.id }}" style="color: blue; font-size: 20px;">Ред.</a>{{ name.name }}</h2>
-   <a href="/admin.php?mod=addtest" style="color: blue">Добавить вопрос</a><br>  
+        <a href="/admin.php?mod=addtest" style="color: blue">Добавить вопрос</a><br>
+        <a href="/admin.php?mod=editoption" style="color: blue">Редактировать данные</a>
+
           <div id="por">
         
         {% for quest in quests %}

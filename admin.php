@@ -77,6 +77,12 @@ unset($_POST);
 	 			$template = $admin->loadTemplate('addQustions.tpl');
 				echo $template->render(array('rend' => $rend));
  				
+ 	}elseif($_GET[mod] == 'editoption' && isset($_SESSION['Title_Test']['id'])){ // обновление записи проходного балла и кол-ва вопросов на опрос
+ 				
+				$void = $db->loadInterview($_SESSION['Title_Test']['id']);
+	 			$template = $admin->loadTemplate('editOption.tpl');
+				echo $template->render(array('void' => $void));
+ 				
  	}elseif($_GET[mod] == 'editInterviewName' && isset($_GET[id])){ // страница с редактирвания названия опроса
 
  		

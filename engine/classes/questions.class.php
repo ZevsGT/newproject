@@ -59,17 +59,20 @@ class questions extends interview{
 		if($this->questions_list != null && $this->interview != null){
 			if($this->interview[num_quest] != null){
 				if(count($this->questions_list) >= $this->interview[num_quest]){
+					
 					$key = array_rand($this->questions_list, $this->interview[num_quest]);
 					$data['interview_id'] =  $this->interview[id];
 					$data['questions_rand_key'] =  $key;
 					$data['user_num'] = 0;
 					$data['user_question'] = null;
 					return $data;
-				}else echo "error: Number of questions in the database is less than in the survey";
-			}else echo "error: The database did not record the number of questions";
-		}else echo 'error: Survey data not uploaded';
+
+				}else throw new Exception('Number of questions in the database is less than in the survey');
+			}else throw new Exception('The database did not record the number of questions');
+		}else throw new Exception('Survey data not uploaded');
 
 	}
+
 
 	function data_load($data){// загружает данные вопроса которые были свормированы в функции data_preparation() или get_data()
 		

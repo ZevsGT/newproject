@@ -7,8 +7,12 @@ class interview {
 	protected $user_num;
 	protected $db;
 
-	function load_interview($interviewID){
-			$this->interview = $interviewID;
+	function __construct(){
+		$this->db = new database('testtitle', 'questions', 'answers' ,'users');
+	}
+
+	function load_interview($interview){
+			$this->interview = $interview;
 	}
 
 	function getInterview(){//возвращает данные опроса

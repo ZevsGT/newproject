@@ -32,6 +32,9 @@ document.getElementById('form').addEventListener('submit', function(evt){
         f.contacts.removeAttribute('value');
         f.name.value='';
         f.contacts.value='';
+        setTimeout(function(){
+            window.location.href = '/index.php';
+        }, 1 * 1000);
       }
     }
   }

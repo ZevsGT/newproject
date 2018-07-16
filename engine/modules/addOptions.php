@@ -1,12 +1,13 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/engine/head.php';
 
-if(isset($_POST[further])){
-	//$addO = new interview('testtitle', 'questions', 'answers' ,'users');
+if($_POST[passing] <= ($_POST[num] - 2)){
+	
 	$db->addOptions($_POST[num], $_POST[passing], $_POST[id]);
 
-	header('location: /admin.php');
-}
+	echo "Добавленно";
+
+}else echo "Проходной балл должен быть меньше чем количество вопросов (минимум на два)";
 ?>
 
 
